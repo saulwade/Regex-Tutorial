@@ -6,7 +6,7 @@ This tutorial aims to explain the function of a specific regular expression used
 
 We will be describing the following regex for matching an HTML tag:
 
-/^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$/
+<(\/?)(\w+)((?:\s+\w+(?:\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)*\s*)(\/?)>
 
 This regex checks if a given string contains an HTML tag, capturing the tag name and attributes if any.
 
@@ -23,8 +23,10 @@ Greedy and Lazy Match
 Boundaries
 Back-references
 Look-ahead and Look-behind
-Regex Components
-Anchors
+
+# Regex Components
+
+# Anchors
 In the given regex, there are no anchors used. The regex will search for an HTML tag anywhere within the input string.
 
 # Quantifiers
@@ -34,7 +36,8 @@ There are several quantifiers in this regex:
 (\w+): This matches one or more word characters (letters, digits, or underscores), capturing the tag name.
 ((?:\s+\w+(?:\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)*\s*): This complex expression matches zero or more attribute pairs (attribute name and value), including whitespace between them.
 (\/?): This matches an optional forward slash / before the closing angle bracket >, indicating whether the tag is a self-closing tag.
-OR Operator
+
+# OR Operator
 The OR operator | is used within the attribute value matching section:
 
 ".*?": This matches a double-quoted attribute value.
@@ -47,3 +50,16 @@ The OR operator | is used within the attribute value matching section:
 # Flags
 In the given regex, there are no flags used.
 
+# Grouping and Capturing
+(\/?): This captures the optional forward slash / at the beginning of the tag, indicating whether the tag is an opening or closing tag.
+(\w+): This captures the tag name.
+(\/?): This captures the optional forward slash / before the closing angle bracket >, indicating whether the tag is a self-closing tag.
+
+# Bracket Expressions
+[^'">\s]+: This bracket expression is used to match unquoted attribute values. It matches one or more characters that are not quotes, angle brackets, or whitespace.
+
+# Greedy and Lazy Match
+".*?", '.*?': These lazy quantifiers match attribute values in quotes as little as possible.
+
+# Boundaries
+There are no specific boundary components in
